@@ -861,19 +861,19 @@ def switch(api, i):
         print("Could not login to Garmin Connect, try again later.")
 
 
-# Main program loop
-while True:
-    # Display header and login
-    print("\n*** Garmin Connect API Demo by cyberjunky ***\n")
-
-    # Init API
-    if not api:
-        api = init_api(email, password)
-
-    if api:
-        # Display menu
-        print_menu()
-        option = readchar.readkey()
-        switch(api, option)
-    else:
-        api = init_api(email, password)
+# # Main program loop
+# while True:
+#     # Display header and login
+#     print("\n*** Garmin Connect API Demo by cyberjunky ***\n")
+#
+#     # Init API
+#     if not api:
+#         api = init_api(email, password)
+#
+#     if api:
+#         # Display menu
+#         print_menu()
+#         option = readchar.readkey()
+#         switch(api, option)
+#     else:
+#         api = init_api(email, password)
