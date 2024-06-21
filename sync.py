@@ -99,7 +99,9 @@ class Synchronizer:
                 "Content-Type": "application/json"
             }
             data = {
-                "name": name
+                "name": name,
+                "description":
+                    "Activity name is sync-ed from Garmin by https://github.com/santheipman/python-garminconnect"
             }
             url = f"https://www.strava.com/api/v3/activities/{activity_id}"
             response = requests.put(url, headers=headers, json=data)
