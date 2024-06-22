@@ -4,7 +4,7 @@ Sync activity names from Garmin to Strava.
 
 # Install
 
-Before installation, please read through the https://github.com/cyberjunky/python-garminconnect repo and read https://developers.strava.com/docs/authentication/ to understand how Garmin and Strava authentication work respectively.
+Before installation, please read through the https://github.com/cyberjunky/python-garminconnect repo and https://developers.strava.com/docs/authentication/ to understand how Garmin and Strava authentication work, respectively.
 
 **Step 1**. Clone the repo
 ```bash
@@ -31,7 +31,7 @@ GARSYNC_CLIENT_SECRET=your_client_secret
 http://www.strava.com/oauth/authorize?client_id=your_client_id&response_type=code&redirect_uri=http://localhost/exchange_token&approval_prompt=force&scope=activity:write,activity:read_all
 ```
 
-**Step 6**. After Step 5, you will be redirect to another url. Copy the `code` from that url and use it to request the access token
+**Step 6**. After Step 5, you will be redirected to another url. Copy the `code` from that url and replace `your_code` in request the access token
 ```bash
 curl -X POST https://www.strava.com/oauth/token \
   -F client_id=your_client_id \
@@ -42,7 +42,13 @@ curl -X POST https://www.strava.com/oauth/token \
 
 **Step 7**. Paste the response from Step 6 into `~/.strava_token` file.
 
-**Step 8**. Verify that the installation is success by running the sync script
+**Step 8**. Login into Garmin by running
+```bash
+python3 login_garmin.py
+```
+
+# Usage
+Run
 ```bash
 python3 sync.py
 ```
