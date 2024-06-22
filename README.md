@@ -53,8 +53,8 @@ Run
 python3 sync.py
 ```
 
-# Sync periodically
-You can ultilize [crontab](https://www.doabledanny.com/cron-jobs-on-mac) to schedule to script to run periodically. 
+# Run periodically
+You can utilize [crontab](https://www.doabledanny.com/cron-jobs-on-mac) to schedule to script to run periodically. 
 
 Run `crontab -e` and add this line to run the script at every 15 minutes. Remember to specify your `SCRIPT_PATH`.
 
