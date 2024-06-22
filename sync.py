@@ -101,7 +101,7 @@ class Synchronizer:
             data = {
                 "name": name,
                 "description":
-                    "Activity name is sync-ed from Garmin by https://github.com/santheipman/python-garminconnect"
+                    "Auto sync-ed title by https://github.com/santheipman/python-garminconnect"
             }
             url = f"https://www.strava.com/api/v3/activities/{activity_id}"
             response = requests.put(url, headers=headers, json=data)
@@ -112,6 +112,7 @@ class Synchronizer:
             raise RuntimeError(f"Request failed: {e}")
 
     def sync_activity_name_from_garmin_to_strava(self, garmin_activities: list[dict], strava_activities: list[dict]):
+        print(f"{datetime.now()} | Synchronizing activity names ...")
         for strava_activity in strava_activities:
             strava_start = datetime.strptime(strava_activity["start_date"], "%Y-%m-%dT%H:%M:%SZ")
             strava_name = strava_activity["name"]
@@ -121,10 +122,13 @@ class Synchronizer:
                 if strava_start == garmin_start and strava_name != garmin_name:
                     self.set_strava_activity_name(strava_activity["id"], garmin_name)
                     print(
-                        f"Activity at {garmin_start}: changed Strava activity name from {strava_name} to {garmin_name}"
+                        f"{datetime.now()} | Activity at {garmin_start}, strava id {strava_activity["id"]}: "
+                        f"changed Strava activity name from {strava_name} to {garmin_name}"
                     )
                     break
 
+
+print("----------------------------")
 
 load_dotenv()
 

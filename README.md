@@ -1,157 +1,57 @@
-# Python: Garmin Connect
+# Activity Name Sync
 
-```
-$ ./example.py
-*** Garmin Connect API Demo by cyberjunky ***
+Sync activity names from Garmin to Strava.
 
-1 -- Get full name
-2 -- Get unit system
-3 -- Get activity data for '2024-03-15'
-4 -- Get activity data for '2024-03-15' (compatible with garminconnect-ha)
-5 -- Get body composition data for '2024-03-15' (compatible with garminconnect-ha)
-6 -- Get body composition data for from '2024-03-08' to '2024-03-15' (to be compatible with garminconnect-ha)
-7 -- Get stats and body composition data for '2024-03-15'
-8 -- Get steps data for '2024-03-15'
-9 -- Get heart rate data for '2024-03-15'
-0 -- Get training readiness data for '2024-03-15'
-- -- Get daily step data for '2024-03-08' to '2024-03-15'
-/ -- Get body battery data for '2024-03-08' to '2024-03-15'
-! -- Get floors data for '2024-03-08'
-? -- Get blood pressure data for '2024-03-08' to '2024-03-15'
-. -- Get training status data for '2024-03-15'
-a -- Get resting heart rate data for 2024-03-15'
-b -- Get hydration data for '2024-03-15'
-c -- Get sleep data for '2024-03-15'
-d -- Get stress data for '2024-03-15'
-e -- Get respiration data for '2024-03-15'
-f -- Get SpO2 data for '2024-03-15'
-g -- Get max metric data (like vo2MaxValue and fitnessAge) for '2024-03-15'
-h -- Get personal record for user
-i -- Get earned badges for user
-j -- Get adhoc challenges data from start '0' and limit '100'
-k -- Get available badge challenges data from '1' and limit '100'
-l -- Get badge challenges data from '1' and limit '100'
-m -- Get non completed badge challenges data from '1' and limit '100'
-n -- Get activities data from start '0' and limit '100'
-o -- Get last activity
-p -- Download activities data by date from '2024-03-08' to '2024-03-15'
-r -- Get all kinds of activities data from '0'
-s -- Upload activity data from file 'MY_ACTIVITY.fit'
-t -- Get all kinds of Garmin device info
-u -- Get active goals
-v -- Get future goals
-w -- Get past goals
-y -- Get all Garmin device alarms
-x -- Get Heart Rate Variability data (HRV) for '2024-03-15'
-z -- Get progress summary from '2024-03-08' to '2024-03-15' for all metrics
-A -- Get gear, the defaults, activity types and statistics
-B -- Get weight-ins from '2024-03-08' to '2024-03-15'
-C -- Get daily weigh-ins for '2024-03-15'
-D -- Delete all weigh-ins for '2024-03-15'
-E -- Add a weigh-in of 89.6kg on '2024-03-15'
-F -- Get virtual challenges/expeditions from '2024-03-08' to '2024-03-15'
-G -- Get hill score data from '2024-03-08' to '2024-03-15'
-H -- Get endurance score data from '2024-03-08' to '2024-03-15'
-I -- Get activities for date '2024-03-15'
-J -- Get race predictions
-K -- Get all day stress data for '2024-03-15'
-L -- Add body composition for '2024-03-15'
-M -- Set blood pressure '120,80,80,notes='Testing with example.py'
-N -- Get user profile/settings
-O -- Reload epoch data for 2024-03-15
-P -- Get workouts 0-100, get and download last one to .FIT file
-R -- Get solar data from your devices
-S -- Get pregnancy summary data
-T -- Add hydration data (1 cup) for today
-Z -- Remove stored login tokens (logout)
-q -- Exit
-Make your selection: 
-```
+# Install
 
-[![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.me/cyberjunkynl/)
+Before installation, please read through the https://github.com/cyberjunky/python-garminconnect repo and read https://developers.strava.com/docs/authentication/ to understand how Garmin and Strava authentication work respectively.
 
-Python 3 API wrapper for Garmin Connect.
-
-## About
-
-This package allows you to request garmin device, activity and health data from your Garmin Connect account.
-See <https://connect.garmin.com/>
-
-## Installation
-
+**Step 1**. Clone the repo
 ```bash
-pip3 install garminconnect
+git clone https://github.com/santheipman/python-garminconnect.git
 ```
 
-## Authentication
-
-The library uses the same authentication method as the app using [Garth](https://github.com/matin/garth).
-The login credentials generated with Garth are valid for a year to avoid needing to login each time.  
-NOTE: We obtain the OAuth tokens using the consumer key and secret as the Connect app does.
-`garth.sso.OAUTH_CONSUMER` can be set manually prior to calling api.login() if someone wants to use a custom consumer key and secret.
-
-## Testing
-
-The test files use the credential tokens created by `example.py` script, so use that first.
-
+**Step 2**. Install the dependencies
 ```bash
-export GARMINTOKENS=~/.garminconnect
-sudo apt install python3-pytest (needed some distros)
-
-make install-test
-make test
-```
-
-## Development
-
-To create a development environment to commit code.
-
-```
-make .venv
-source .venv/bin/activate
-
-pip3 install pdm
-pip3 install ruff
-pdm init
-
-sudo apt install pre-commit isort black mypy
-pip3 install pre-commit
-```
-Run checks before PR/Commit:
-```
-make format
-make lint
-make codespell
-```
-
-## Publish
-
-To publish new package (author only)
-
-```
-sudo apt install twine
-vi ~/.pypirc
-[pypi]
-username = __token__
-password = <PyPI token>
-
-make publish
-```
-
-## Example
-The tests provide examples of how to use the library.  
-There is a Jupyter notebook called `reference.ipynb` provided [here](https://github.com/cyberjunky/python-garminconnect/blob/master/reference.ipynb).  
-And you can check out the `example.py` code you can find [here](https://raw.githubusercontent.com/cyberjunky/python-garminconnect/master/example.py), you can run it like so:  
-```
+cd python-garminconnect
+python3 -m venv venv
 pip3 install -r requirements-dev.txt
-./example.py
 ```
 
-## Credits
+**Step 3**. Register your application in order to use it to access/modify your data on Strava: https://developers.strava.com/docs/getting-started/#account
 
-:heart: Special thanks to all people contributed, either by asking questions, reporting bugs, coming up with great ideas, or even by creating whole Pull Requests to add new features!
-This project deserves more attention, but I'm struggling to free up time sometimes, so thank you for your patience too!
+**Step 4**. Create `.env` file and paste your `client_id` and `client_secret` from Step 3 into it. The `.env` looks like this
+```
+GARSYNC_CLIENT_ID=your_client_id
+GARSYNC_CLIENT_SECRET=your_client_secret
+```
 
-## Donations
+**Step 5**. Open this link in your browser to authorize your application to read and write your data on Strava. Remember to use your `client_id` in the link.
+```
+http://www.strava.com/oauth/authorize?client_id=your_client_id&response_type=code&redirect_uri=http://localhost/exchange_token&approval_prompt=force&scope=activity:write,activity:read_all
+```
 
-[![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.me/cyberjunkynl/)
+**Step 6**. After Step 5, you will be redirect to another url. Copy the `code` from that url and use it to request the access token
+```bash
+curl -X POST https://www.strava.com/oauth/token \
+  -F client_id=your_client_id \
+  -F client_secret=your_client_secret \
+  -F code=your_code \
+  -F grant_type=authorization_code
+```
+
+**Step 7**. Paste the response from Step 6 into `~/.strava_token` file.
+
+**Step 8**. Verify that the installation is success by running the sync script
+```bash
+python3 sync.py
+```
+
+# Sync periodically
+You can ultilize [crontab](https://www.doabledanny.com/cron-jobs-on-mac) to schedule to script to run periodically. 
+
+Run `crontab -e` and add this line to run the script at every 15 minutes. Remember to specify your `SCRIPT_PATH`.
+
+```
+*/15 * * * * export SCRIPT_PATH=path/to/python-garminconnect && $SCRIPT_PATH/sync.sh >> $SCRIPT_PATH/sync_log.txt 2>&1
+```
