@@ -59,5 +59,5 @@ You can utilize [crontab](https://www.doabledanny.com/cron-jobs-on-mac) to sched
 Run `crontab -e` and add this line to run the script at every 15 minutes. Remember to specify your `SCRIPT_PATH`.
 
 ```
-*/15 * * * * export SCRIPT_PATH=path/to/python-garminconnect && $SCRIPT_PATH/sync.sh >> $SCRIPT_PATH/sync_log.txt 2>&1
+*/15 * * * * export GARSYNC_SCRIPT_PATH=~/dev/personal/python-garminconnect && export GARSYNC_LOG_FILE=sync_log.txt  && $GARSYNC_SCRIPT_PATH/sync.sh >> $GARSYNC_SCRIPT_PATH/$GARSYNC_LOG_FILE 2>&1 && python3 $GARSYNC_SCRIPT_PATH/trim_log.py
 ```
